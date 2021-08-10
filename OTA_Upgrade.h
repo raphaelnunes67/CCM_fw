@@ -99,7 +99,7 @@ void OTA_arduino_upgrade() {
  ******************************************************************
 */
 char SaveTime_upgrade(char intORfw);
-void OTA_https_upgrate() {
+void OTA_https_upgrade() {
   //client.disconnect(); // Turn off MQTT comunication
   //digitalWrite(MQTT_LED_pin, HIGH); // Turn off LED MQTT notification
   WiFiClientSecure client_http;
@@ -220,7 +220,7 @@ void OTA_https_upgrate() {
 
     String int_link = obj1[("int_link")].as<String>();
 #ifdef DEBUG
-    Serial.println("Link direto da nova versão de interface: ");
+    Serial.println("Link da nova versão de interface: ");
     Serial.println(int_link);
 #endif
     http.begin(client_http, int_link);
