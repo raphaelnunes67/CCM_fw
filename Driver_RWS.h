@@ -104,6 +104,9 @@ char SaveTime_upgrade(char intORfw) {
   file.close();
 }
 String UpdateVC_link(String New_VC_link) {
+  int pFrom = New_VC_link.indexOf("\"new_vc_link\":\"") + 1;
+  int pTo = New_VC_link.indexOf("\"}");
+  New_VC_link = New_VC_link.substring(pFrom);
   file = SPIFFS.open("/system_info.json", "r");
   String system_info = file.readString();
   file.close();

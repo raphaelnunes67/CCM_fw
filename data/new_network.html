@@ -3,6 +3,7 @@
 
 <head>
     <title>Configure Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <style>
@@ -74,6 +75,27 @@
     ::placeholder {
         color: #696969;
     }
+
+    @media screen and (max-width:768px) {   
+        .form-wrap {
+            width: 350px;
+            height: 600px;        
+        }
+        h1 {
+            font-size: 25px;
+        }
+        h6 {
+            font: 10px Courier;
+        }
+        input {
+            font-size: 15px;
+            
+        }
+        input[type="submit"] {
+            font-size: 15px;
+        
+        }
+    }
 </style>
 
 <body>
@@ -97,7 +119,8 @@
                 placeholder="Subscribe In">
             <input type="text" title="Publish In" id="pubs" name="TOPIC PUB" value="Home/CPA/SMCC/output"
                 placeholder="Publish In">
-            <h6>&#8226;	 Passwords must be at least 6 characters long.<br> &#8226; In case of service without password, leave the
+            <h6>&#8226; Passwords must be at least 6 characters long.<br> &#8226; In case of service without password,
+                leave the
                 field blank.</h6>
             <input type="submit" name="SUBMIT" onclick="return validar()" value="Send">
 
