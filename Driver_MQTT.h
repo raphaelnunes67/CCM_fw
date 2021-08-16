@@ -60,7 +60,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     CommandMotor(false);
     Lock = false;
   }
-  else if (cb_message == "OPEN"){CommandGate  (false);}
+  else if (cb_message == "OPEN"){CommandGate(false);}
   
   else if (cb_message == "CLOSE"){CommandGate(true);}
   
@@ -68,11 +68,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
   
   else if (cb_message == "GS"){ESP_Sleep();}
   
-  else if ((cb_message == "VAU") and (Motor_State == false)){OTA_https_upgrate();}
+  else if ((cb_message == "OTA") and (Motor_State == false)){OTA_https_upgrate();}
   
   else if (cb_message == "SI"){Send_system_info();}
   
-  else if(cb_message.indexOf("http") != -1){UpdateVC_link(cb_message);}
+  else if(cb_message.indexOf("new_vc_link") != -1){UpdateVC_link(cb_message);}
 }
 //END - Callback MQTT payloads
 
