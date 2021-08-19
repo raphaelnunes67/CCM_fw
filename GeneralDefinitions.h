@@ -7,15 +7,18 @@
   ****************************************
 */
 //Define pins name
-const int WIFI_LED_pin = 12; // Red
-const int MQTT_LED_pin = 14; //Blue
-const int AP_LED_pin = 2; // Yellow
+const int WIFI_LED_pin = 12; // Led Red
+const int MQTT_LED_pin = 2; //Led Blue
+//const int AP_LED_pin = 2; // Yellow
 const int INTERRUPT_pin = 0;
 const int MOTOR_pin = 4;
 const int GATE_pin = 5;
 const int CURRENT_SENSOR_pin = 17;
-const int WL_ECHO_pin = 15;
-const int WL_TRIG_pin = 13;
+const int WL_ECHO_pin = 13;
+const int WL_TRIG_pin = 15;
+//ADC_pin => A0 (17)
+//Wake_pin => 16
+//PWM_genarator_pin => 14
 //Web Server and DNS server
 const byte DNS_PORT = 53;
 IPAddress apIP(192, 168, 1, 1);
