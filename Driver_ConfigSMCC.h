@@ -152,7 +152,6 @@ void handleNotFound() {
 void ConfigureSMCC() {
   digitalWrite(WIFI_LED_pin, HIGH);
   digitalWrite(MQTT_LED_pin, HIGH);
-  digitalWrite(AP_LED_pin, LOW);
   WiFi.mode(WIFI_OFF);
   delay(1000);
   WiFi.mode(WIFI_AP);

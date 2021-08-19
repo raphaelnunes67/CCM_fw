@@ -19,7 +19,7 @@ void OTA_arduino_upgrade() {
   ArduinoOTA.onStart([]() {
     digitalWrite(WIFI_LED_pin, HIGH);
     digitalWrite(MQTT_LED_pin, HIGH);
-    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin, AP_LED_pin);
+    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin);
     if (ArduinoOTA.getCommand() == U_FLASH) {
       // Atualizar sketch
       s = "Sketch";
@@ -38,10 +38,10 @@ void OTA_arduino_upgrade() {
 #ifdef DEBUG
     Serial.println("\nOTA Concluído.");
 #endif
-    digitalWrite(AP_LED_pin, HIGH);
+    //digitalWrite(AP_LED_pin, HIGH);
     digitalWrite(WIFI_LED_pin, HIGH);
     digitalWrite(MQTT_LED_pin, HIGH);
-    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin, AP_LED_pin);
+    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin);
     #ifdef DEBUG
     Serial.println (s);
     #endif
@@ -171,7 +171,7 @@ void OTA_https_upgrade() {
   // HTTPS OTA Upgrade definitions
   ESPhttpUpdate.onStart([] {
     digitalWrite(WIFI_LED_pin, HIGH);
-    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin, AP_LED_pin);
+    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin);
 #ifdef DEBUG
     Serial.println("Atualização via repositório iniciada");
 #endif
@@ -181,10 +181,10 @@ void OTA_https_upgrade() {
 #ifdef DEBUG
     Serial.println("\nAtualização via repositório concluída ");
 #endif
-    digitalWrite(AP_LED_pin, HIGH);
+    //digitalWrite(AP_LED_pin, HIGH);
     digitalWrite(WIFI_LED_pin, HIGH);
     digitalWrite(MQTT_LED_pin, HIGH);
-    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin, AP_LED_pin);
+    UpgradeBlinkLEDS(WIFI_LED_pin, MQTT_LED_pin);
   });
 
   ESPhttpUpdate.onError([](int erro) {

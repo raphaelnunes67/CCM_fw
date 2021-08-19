@@ -50,7 +50,6 @@ MedianFilter filter (31,0);
 
 // Set pins IO and initial values
 void SetPins() {
-  pinMode(AP_LED_pin, OUTPUT); digitalWrite(AP_LED_pin, HIGH);
   pinMode(WIFI_LED_pin, OUTPUT); digitalWrite(WIFI_LED_pin, HIGH);
   pinMode(MQTT_LED_pin, OUTPUT); digitalWrite(MQTT_LED_pin, HIGH);
   pinMode(MOTOR_pin, OUTPUT); digitalWrite(MOTOR_pin, LOW);

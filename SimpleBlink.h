@@ -16,14 +16,14 @@ void BlinkLED(const int pin) {
 // END - Blink Any LED
 
 //Leds during upgrade
-void UpgradeBlinkLEDS(const int pin1,const int pin2, const int pin3){
+void UpgradeBlinkLEDS(const int pin1,const int pin2){
   for (int i = 0; i < 3; i++) {
-      digitalWrite(pin1, LOW);digitalWrite(pin2, LOW);digitalWrite(pin3, LOW);
+      digitalWrite(pin1, LOW);digitalWrite(pin2, LOW);
       delay(700);
-      digitalWrite(pin1, HIGH);digitalWrite(pin2, HIGH);digitalWrite(pin3, HIGH);
+      digitalWrite(pin1, HIGH);digitalWrite(pin2, HIGH);
       delay(700);
     }
-    digitalWrite(pin1, LOW); digitalWrite(pin2, LOW); digitalWrite(pin3, LOW);
+    digitalWrite(pin1, LOW); digitalWrite(pin2, LOW);
 }
 // END - Leds during upgrade
 
