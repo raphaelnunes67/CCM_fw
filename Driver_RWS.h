@@ -9,7 +9,15 @@
 */
 // Motor controller
 void CommandMotor(bool Command) {
-  Motor_State = Command;
+  if (Command){
+    for (int i=255; i>1; i--){
+      analogWrite(MOTOR_pin,i);
+      delayMicroseconds(50);
+    }
+  }
+  else{
+    analogWrite(MOTOR_pin, 255);
+  }
   digitalWrite(MOTOR_pin, Motor_State);
 }
 // END - Motor controller

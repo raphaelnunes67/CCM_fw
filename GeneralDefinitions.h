@@ -6,19 +6,17 @@
    E-mail: raphaelnunes67@gmail.com
   ****************************************
 */
-//Define pins name
-const int WIFI_LED_pin = 12; // Led Red
+//Define pins
+const int WIFI_LED_pin = 12; //Led Red
 const int MQTT_LED_pin = 2; //Led Blue
-//const int AP_LED_pin = 2; // Yellow
 const int INTERRUPT_pin = 0;
-const int MOTOR_pin = 4;
+const int MOTOR_pin = 14;
 const int GATE_pin = 5;
-const int CURRENT_SENSOR_pin = 17;
+const int CURRENT_SENSOR_pin = 17; // A0
 const int WL_ECHO_pin = 13;
 const int WL_TRIG_pin = 15;
-//ADC_pin => A0 (17)
+const int GEN_pin = 4;
 //Wake_pin => 16
-//PWM_genarator_pin => 14
 //Web Server and DNS server
 const byte DNS_PORT = 53;
 IPAddress apIP(192, 168, 1, 1);
@@ -33,6 +31,7 @@ const int time_pub = 1000; // Delay of each MQTT publication (1s)
 const int time_sleep_s = 300; // Sleep time in seconds
 const int ap_time_ms = 180000; //Access point is open for 3 minutes
 const int try_connect_ms = 120000; // Time to try a connection (MQTT and WIFI); (ms)
+const int duty_cycle_value = 132; // PWM value to use voltage doubler
 //File System
 File file;
 //MQTT PubSubClient config.
@@ -52,10 +51,11 @@ MedianFilter filter (31,0);
 void SetPins() {
   pinMode(WIFI_LED_pin, OUTPUT); digitalWrite(WIFI_LED_pin, HIGH);
   pinMode(MQTT_LED_pin, OUTPUT); digitalWrite(MQTT_LED_pin, HIGH);
-  pinMode(MOTOR_pin, OUTPUT); digitalWrite(MOTOR_pin, LOW);
+  pinMode(MOTOR_pin, OUTPUT); analogWrite(MOTOR_pin, 255);
   pinMode(GATE_pin, OUTPUT); digitalWrite(GATE_pin, LOW);
   //pinMode(WL_ECHO_pin, INPUT);
-  //pinMode(WL_TRIG_pin, OUTPUT); digitalWrite(WL_TRIG_pin, LOW); 
+  //pinMode(WL_TRIG_pin, OUTPUT); digitalWrite(WL_TRIG_pin, LOW);
+  pinMode(GEN_pin, OUTPUT); analogWrite(GEN_pin, duty_cycle_value); 
   pinMode(INTERRUPT_pin, INPUT_PULLUP);
 #ifdef DEBUG
   Serial.println("\nPinos setados.");
