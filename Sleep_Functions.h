@@ -12,8 +12,11 @@ void ESP_Sleep() {
 #ifdef DEBUG
     Serial.println("Indo dormir em 3s...");
 #endif
+    client.publish("TEST/SMCC", "GS");
     delay(3000);
     ESP.deepSleep(time_sleep_s * 1e6, WAKE_RF_DEFAULT); // Sleep 300s
   }
 }
 // END - Sleep Function
+
+

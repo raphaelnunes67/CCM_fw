@@ -53,7 +53,7 @@ void SetPins() {
   pinMode(WIFI_LED_pin, OUTPUT); digitalWrite(WIFI_LED_pin, HIGH);
   pinMode(MQTT_LED_pin, OUTPUT); digitalWrite(MQTT_LED_pin, HIGH);
   pinMode(MOTOR_pin, OUTPUT); digitalWrite(MOTOR_pin, LOW);
-  pinMode(GATE_pin, OUTPUT); digitalWrite(GATE_pin, LOW);
+  pinMode(GATE_pin, OUTPUT); digitalWrite(GATE_pin, HIGH);
   //pinMode(WL_ECHO_pin, INPUT);
   //pinMode(WL_TRIG_pin, OUTPUT); digitalWrite(WL_TRIG_pin, LOW); 
   pinMode(INTERRUPT_pin, INPUT_PULLUP);
