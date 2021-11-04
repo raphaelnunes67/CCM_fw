@@ -51,13 +51,8 @@ MedianFilter filter (31,0);
 void SetPins() {
   pinMode(WIFI_LED_pin, OUTPUT); digitalWrite(WIFI_LED_pin, HIGH);
   pinMode(MQTT_LED_pin, OUTPUT); digitalWrite(MQTT_LED_pin, HIGH);
-<<<<<<< HEAD
-  pinMode(MOTOR_pin, OUTPUT); digitalWrite(MOTOR_pin, LOW);
-  pinMode(GATE_pin, OUTPUT); digitalWrite(GATE_pin, HIGH);
-=======
   pinMode(MOTOR_pin, OUTPUT); analogWrite(MOTOR_pin, 255);
   pinMode(GATE_pin, OUTPUT); digitalWrite(GATE_pin, LOW);
->>>>>>> 9ce17eb26c7b03ea257da107b4d34c4eaf87adfe
   //pinMode(WL_ECHO_pin, INPUT);
   //pinMode(WL_TRIG_pin, OUTPUT); digitalWrite(WL_TRIG_pin, LOW);
   pinMode(GEN_pin, OUTPUT); analogWrite(GEN_pin, duty_cycle_value); 

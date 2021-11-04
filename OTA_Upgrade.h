@@ -278,7 +278,7 @@ void OTA_https_upgrade() {
   // END - Upgrade interface
 
   /* ******************************************************************************
-   * *                         FIRMWARE ATUALIZATION                              *
+   * *                         FIRMWARE UPDATE                                    *
    * ******************************************************************************
   */
   if (fw_new_ver != fw_ver) {
@@ -330,5 +330,5 @@ void OTA_https_upgrade() {
 
     ESP.restart();
   }
-  //END - Upgrade FW
+  //END - Update FW
 }

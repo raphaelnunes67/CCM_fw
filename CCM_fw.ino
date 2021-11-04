@@ -18,7 +18,7 @@
 #include "Driver_ConfigSMCC.h"
 #include "Driver_RWS.h"
 #include "Driver_WIFI.h"
-#include "OTA_Upgrade.h"
+//#include "OTA_Upgrade.h"
 #include "Driver_MQTT.h"
 
 void setup() {
@@ -33,7 +33,7 @@ void setup() {
   SetInterrupt(); //Defines interrupt routines (Factory reset)
   VerifyConfigJSON(); // Checks whether registration data is saved in the file system
   initWIFI(); //Starts WIFI 
-  OTA_arduino_upgrade(); //Enables updating via Arduino IDE
+  //OTA_arduino_upgrade(); //Enables updating via Arduino IDE
   initMQTT();//Starts MQTT comunication
 }
 
