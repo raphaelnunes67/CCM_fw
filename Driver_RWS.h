@@ -87,7 +87,7 @@ String ReadValues() {
 }
 // - END Aux function
 
-char SaveTime_upgrade(char intORfw) {
+char SaveTime_update(char intORfw) {
   //ntpClient.update();
   ntpClient.begin();
   delay(2000);

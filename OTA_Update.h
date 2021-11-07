@@ -9,13 +9,13 @@
 
 /*
  ******************************************************************
-                      OTA Arduino IDE upgrade
+                      OTA Arduino IDE update
  ******************************************************************
 */
 String s;
 
-void OTA_arduino_upgrade() {
-  ArduinoOTA.setHostname("SMCC-ESP8266");
+void OTA_arduino_update() {
+  ArduinoOTA.setHostname("CCM-ESP8266");
   ArduinoOTA.onStart([]() {
     digitalWrite(WIFI_LED_pin, HIGH);
     digitalWrite(MQTT_LED_pin, HIGH);
@@ -46,10 +46,10 @@ void OTA_arduino_upgrade() {
     Serial.println (s);
     #endif
     if (s == "SPIFFS"){
-      SaveTime_upgrade('i');
+      SaveTime_update('i');
     }
     else if(s == "Sketch"){
-      SaveTime_upgrade('f');
+      SaveTime_update('f');
     }
     
     ESP.restart();
@@ -88,18 +88,18 @@ void OTA_arduino_upgrade() {
 
 #ifdef DEBUG
   Serial.println("Atualização via OTA disponível.");
-  Serial.println("Hostname: SMCC-ESP8266");
+  Serial.println("Hostname: CCM-ESP8266");
 #endif
 }
 // END - OTA Arduino IDE Update
 
 /*
  ******************************************************************
-                         OTA HTTPS upgrade
+                         OTA HTTPS update
  ******************************************************************
 */
-char SaveTime_upgrade(char intORfw);
-void OTA_https_upgrade() {
+char SaveTime_update(char intORfw);
+void OTA_https_update() {
   //client.disconnect(); // Turn off MQTT comunication
   //digitalWrite(MQTT_LED_pin, HIGH); // Turn off LED MQTT notification
   WiFiClientSecure client_http;
@@ -208,7 +208,7 @@ void OTA_https_upgrade() {
   //END - HTTPS OTA Upgrade definitions
 
   /* ******************************************************************************
-   * *                         FS ATUALIZATION                                    *
+   * *                         FS UPDATE                                          *
    * ******************************************************************************
   */
 
@@ -225,15 +225,15 @@ void OTA_https_upgrade() {
 #endif
     http.begin(client_http, int_link);
     int httpCode = http.GET();
-    String content_int_upgrade_link = http.getString();
+    String content_int_update_link = http.getString();
     // In case of redirect, find a direct link
-    while (content_int_upgrade_link.indexOf("Moved Temporarily") != -1) {
-      int pFrom = content_int_upgrade_link.indexOf("<A HREF=\"") + 9;
-      int pTo = content_int_upgrade_link.indexOf("\">here</A>");
-      int_link = content_int_upgrade_link.substring(pFrom, pTo);
+    while (content_int_update_link.indexOf("Moved Temporarily") != -1) {
+      int pFrom = content_int_update_link.indexOf("<A HREF=\"") + 9;
+      int pTo = content_int_update_link.indexOf("\">here</A>");
+      int_link = content_int_update_link.substring(pFrom, pTo);
+      http.begin(client_http, int_link);  // Just Upgrade Interface
       httpCode = http.GET();
-      http.begin(content_int_upgrade_link, int_link);  // Just Upgrade Interface
-      content_int_upgrade_link = http.getString();
+      content_int_update_link = http.getString();
     }
     // END - Find a direct link
     http.end();
@@ -245,9 +245,9 @@ void OTA_https_upgrade() {
     file = SPIFFS.open("/register_config.json", "r"); //Open register_config.json
     String config_json = file.readString(); //Make a copy
     file.close(); //Close file
-    SPIFFS.end(); // Finish SPIFFS to make the upgrade
+    SPIFFS.end(); // Finish SPIFFS to make the update
 
-    ESPhttpUpdate.updateSpiffs(client_http, int_link); // Get the new FS (UPGRADE)
+    ESPhttpUpdate.updateSpiffs(client_http, int_link); // Get the new FS (UPDATE)
 
     SPIFFS.begin();
     //Create and save register_config.json
@@ -264,7 +264,7 @@ void OTA_https_upgrade() {
     file.print("}");
     file.close();
     //END - New file system_info.h
-    SaveTime_upgrade('i');
+    SaveTime_update('i');
 #ifdef DEBUG
     file = SPIFFS.open("/system_info.json", "r");
     Serial.println(file.readString());
@@ -294,15 +294,15 @@ void OTA_https_upgrade() {
 
     http.begin(client_http, fw_link); // Make a request
     int httpCode = http.GET(); // Get the request http code
-    String content_fw_upgrade_link = http.getString(); // Get the returned content
+    String content_fw_update_link = http.getString(); // Get the returned content
     // In case of redirect, find a direct link
-    while (content_fw_upgrade_link.indexOf("Moved Temporarily") != -1) {
-      int pFrom = content_fw_upgrade_link.indexOf("<A HREF=\"") + 9;
-      int pTo = content_fw_upgrade_link.indexOf("\">here</A>");
-      fw_link = content_fw_upgrade_link.substring(pFrom, pTo);
+    while (content_fw_update_link.indexOf("Moved Temporarily") != -1) {
+      int pFrom = content_fw_update_link.indexOf("<A HREF=\"") + 9;
+      int pTo = content_fw_update_link.indexOf("\">here</A>");
+      fw_link = content_fw_update_link.substring(pFrom, pTo);
+      http.begin(client_http, fw_link);
       httpCode = http.GET();
-      http.begin(content_fw_upgrade_link, fw_link);
-      content_fw_upgrade_link = http.getString();
+      content_fw_update_link = http.getString();
     }
     http.end();
     // END - Find a direct link
@@ -310,7 +310,7 @@ void OTA_https_upgrade() {
     Serial.println("Link direto da nova versão de FW");
     Serial.println(fw_link);
 #endif
-    ESPhttpUpdate.update(client_http, fw_link); // Get the nem FW version (UPGRADE)
+    ESPhttpUpdate.update(client_http, fw_link); // Get the nem FW version (UPDATE)
 
     //Create a new file system_info.json
     SPIFFS.remove("/system_info.json");
@@ -321,7 +321,7 @@ void OTA_https_upgrade() {
     file.print("}");
     file.close();
     //END - Create a new file system_info.json
-    SaveTime_upgrade('f');
+    SaveTime_update('f');
 #ifdef DEBUG
     file = SPIFFS.open("/system_info.json", "r");
     Serial.println(file.readString());

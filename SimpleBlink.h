@@ -15,7 +15,7 @@ void BlinkLED(const int pin) {
 }
 // END - Blink Any LED
 
-//Leds during upgrade
+//Leds during update
 void UpgradeBlinkLEDS(const int pin1,const int pin2){
   for (int i = 0; i < 3; i++) {
       digitalWrite(pin1, LOW);digitalWrite(pin2, LOW);
@@ -25,7 +25,7 @@ void UpgradeBlinkLEDS(const int pin1,const int pin2){
     }
     digitalWrite(pin1, LOW); digitalWrite(pin2, LOW);
 }
-// END - Leds during upgrade
+// END - Leds during update
 
 void MQTTBlinkLED(const int pin){
   

@@ -1,6 +1,6 @@
 /*
   ****************************************
-           Driver_ConfigSMCC.h
+           Driver_ConfigCCM.h
    Script para ESP8266MOD (Cisterna)
    Autor: Raphael Nunes
    E-mail: raphaelnunes67@gmail.com
@@ -149,14 +149,14 @@ void handleNotFound() {
   server.send(404, "text/plain", message);
 }
 
-void ConfigureSMCC() {
+void ConfigureCCM() {
   digitalWrite(WIFI_LED_pin, HIGH);
   digitalWrite(MQTT_LED_pin, HIGH);
   WiFi.mode(WIFI_OFF);
   delay(1000);
   WiFi.mode(WIFI_AP);
   WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
-  WiFi.softAP("Configure_SMCC");
+  WiFi.softAP("Configure_CCM");
   dnsServer.start(DNS_PORT, "*", apIP);
 #ifdef DEBUG
   Serial.println("Acess Point iniciado!");
@@ -197,7 +197,7 @@ void VerifyConfigJSON() {
 #ifdef DEBUG
     Serial.println("\nArquivo \'register_config.json\' não existe");
 #endif
-    ConfigureSMCC();
+    ConfigureCCM();
   }
   else {
 #ifdef DEBUG

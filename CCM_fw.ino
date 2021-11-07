@@ -1,7 +1,7 @@
 
 /*
   ****************************************
-                 SMCC_main.ino
+                 CCM_fw.ino
    Script para ESP8266MOD (Cisterna)
    Autor: Raphael Nunes
    E-mail: raphaelnunes67@gmail.com
@@ -15,10 +15,10 @@
 #include "Interruptions.h"
 #include "Sleep_Functions.h"
 #include "SimpleBlink.h"
-#include "Driver_ConfigSMCC.h"
+#include "Driver_ConfigCCM.h"
 #include "Driver_RWS.h"
 #include "Driver_WIFI.h"
-//#include "OTA_Upgrade.h"
+#include "OTA_Update.h"
 #include "Driver_MQTT.h"
 
 void setup() {
@@ -33,7 +33,7 @@ void setup() {
   SetInterrupt(); //Defines interrupt routines (Factory reset)
   VerifyConfigJSON(); // Checks whether registration data is saved in the file system
   initWIFI(); //Starts WIFI 
-  //OTA_arduino_upgrade(); //Enables updating via Arduino IDE
+  //OTA_arduino_update(); //Enables updating via Arduino IDE
   initMQTT();//Starts MQTT comunication
 }
 
