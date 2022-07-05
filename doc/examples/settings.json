@@ -9,7 +9,8 @@
     "broker_ip": "BROKER_IP",
     "broker_port": "BROKER_PORT",
     "broker_topic_publish": "BROKER_TOPIC_PUBLISH",
-    "broker_topic_subscribe": "BROKER_TOPIC_SUBSCRIBE"
+    "broker_topic_subscribe": "BROKER_TOPIC_SUBSCRIBE",
+    "client_name":"CCM-master"
   },
   "firmware_version": "FIRMWARE_VERSION",
   "fota_link": "FOTA_LINK"

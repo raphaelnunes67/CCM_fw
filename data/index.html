@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Register Device</title>
+<style type="text/css">
+body{
+	background:#dad7d7;
+}
+.form-style-10{
+	max-width:450px;
+	padding:30px;
+	margin:40px auto;
+	background: #FFF;
+	border-radius: 10px;
+	-webkit-border-radius:10px;
+	-moz-border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+	-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+	-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+}
+.form-style-10 .inner-wrap{
+	padding: 30px;
+	background: #F8F8F8;
+	border-radius: 6px;
+	margin-bottom: 15px;
+}
+.form-style-10 h1{
+	background: #0053A6;
+	padding: 20px 30px 15px 30px;
+	margin: -30px -30px 30px -30px;
+	border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	color: #fff;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+	font: normal 30px 'Bitter', serif;
+	-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	border: 1px solid #0053A6;
+}
+.form-style-10 h1 > span{
+	display: block;
+	margin-top: 2px;
+	font: 13px Arial, Helvetica, sans-serif;
+}
+.form-style-10 label{
+	display: block;
+	font: 13px Arial, Helvetica, sans-serif;
+	color: #888;
+	margin-bottom: 15px;
+}
+.form-style-10 input[type="text"],
+.form-style-10 input[type="date"],
+.form-style-10 input[type="datetime"],
+.form-style-10 input[type="email"],
+.form-style-10 input[type="number"],
+.form-style-10 input[type="search"],
+.form-style-10 input[type="time"],
+.form-style-10 input[type="url"],
+.form-style-10 input[type="password"],
+.form-style-10 input[list],
+.form-style-10 textarea,
+.form-style-10 select {
+	display: block;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	padding: 8px;
+	border-radius: 6px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border: 2px solid #fff;
+	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+}
+
+.form-style-10 input[type="checkbox"]{
+	margin-top: 0;
+	width: 16px;
+  height: 16px;
+}
+
+#check{
+	align-items: center;
+	margin-left: 0.7cm;
+	margin-top: -0.5cm;
+	margin-bottom: -0.5cm;
+}
+.form-style-10 .section{
+	font: normal 20px 'Bitter', serif;
+	color: #0053A6;
+	margin-bottom: 5px;
+}
+.form-style-10 .section span {
+	background: #0053A6;
+	padding: 5px 10px 5px 10px;
+	position: absolute;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border: 4px solid #fff;
+	font-size: 14px;
+	margin-left: -45px;
+	color: #fff;
+	margin-top: -3px;
+}
+button {
+	background: #0053A6;
+	padding: 8px 20px 8px 20px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #fff;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+	font: normal 30px 'Bitter', serif;
+	-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	border: 1px solid #0053A6;
+	font-size: 15px;
+}
+.form-style-10 input[type="button"]:hover, 
+button:hover{
+	background: #003f7e;
+	-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+	-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+	box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
+}
+.form-style-10 .privacy-policy{
+	float: right;
+	width: 250px;
+	font: 12px Arial, Helvetica, sans-serif;
+	color: #4D4D4D;
+	margin-top: 10px;
+	text-align: right;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-style-10">
+<h1>Device<span>Follow the steps below to register device</span></h1>
+<form name="formm" id="formm" action="" method="POST">
+    <div class="section"><span>1</span>Warehouse</div>
+    <div class="inner-wrap">
+        <label>The unique id for the beam <input type="text" name="localId"  id="localId" required="required" placeholder="e.g. D-04B" /></label>
+				<label>Maximum height [mm] <input type="number" name="maxDistance" id="maxDistance" required="required" placeholder="e.g. 1800"/></label>
+    </div>
+		
+    <div class="section"><span>2</span>Wi-Fi Connection</div>
+    <div class="inner-wrap">
+        <label>SSID<input list="networks" name="ssid" id="ssid" required="required" placeholder="e.g. FOXMAO EXPATRIATE" /></label>
+				<datalist id="networks">
+				</datalist>
+        <label>Password<input type="password" name="password" id="password"/></label>
+				<input type="checkbox" onclick="ShowPassword()"> 
+				<label id="check">
+					Show Password 
+				</label>		
+		</div>
+		
+    <div class="section"><span>3</span>Server</div>
+        <div class="inner-wrap">
+        <label>Server Address <input type="text" name="serverAddress" id="serverAddress" required="required" placeholder="e.g. http://192.168.0.10" /></label>
+        <label>Port <input type="number" name="port" id="port" required="required" placeholder="e.g. 5000" /></label>
+				<label>Route Path<input type="text" name="routePath" id="routePath" required="required" placeholder="e.g. /api/sensors/measurement" /></label>
+			</div>
+    <div class="button-section">
+			<button type="button" onclick="check_values()">Register</button>
+     <span class="privacy-policy">
+     <!-- <input type="checkbox" name="field7">You agree to our Terms and Policy.  -->
+     </span>
+    </div>
+</form>
+</div>
+</body>
+<footer>
+	<script>
+		function ShowPassword(){
+			var password = document.getElementById("password");
+			if (password.type == "password"){
+				password.type = "text";
+			}else{
+				password.type = "password"
+			}
+		}
+		
+		function check_values(){
+
+			var localId = document.getElementById("localId");
+			var maxDistance = document.getElementById("maxDistance");
+			var ssid = document.getElementById("ssid");
+			var password = document.getElementById("password");
+			var serverAddress = document.getElementById("serverAddress");
+			var port = document.getElementById("port");
+			var routePath = document.getElementById("routePath")
+			if (localId.value == "") {
+				alert("Local ID not informed");
+				localId.focus();
+				return;
+      }
+
+			if (maxDistance.value == "") {
+				alert("Maximum distance not informed");
+				maxDistance.focus();
+				return;
+      }
+
+			if (ssid.value == "") {
+				alert("Network name not informed");
+				ssid.focus();
+				return;
+      }
+
+			if (serverAddress.value == "") {
+				alert("Server address not informed");
+				serverAddress.focus();
+				return;
+      }
+
+			if (port.value == "") {
+				alert("Port number not informed");
+				port.focus();
+				return;
+      }
+
+			if (routePath.value == "") {
+				alert("Route path number not informed");
+				routePath.focus();
+				return;
+      }
+
+			if(password.value != "" && password.value.length < 8){
+				alert("Password is too short");
+				return;
+			}	
+				
+			alert("The data has been registered");
+			formm.submit();
+		}
+	</script>
+</footer>
+</html>

@@ -1,37 +1,48 @@
 #include <Arduino.h>
 #include <Pinout.h>
 #include <ESP8266WiFi.h>
+#include <ArduinoJson.h>
 #include <DriverWifi.h>
 
-void InitWifi(String mode, String ssid, String password) {
-
+void InitWifi(char mode, String ssid, String password) {
+  
   WiFi.mode(WIFI_OFF);
   delay(10);
+  switch (mode){
+    case 'S':
+      WiFi.mode(WIFI_STA);
+      WiFi.begin(ssid, password);
+      while (WiFi.status() != WL_CONNECTED){
+        LedOnBoardController(WIFI_LED_pin, HIGH);
+        delay(200);
+        LedOnBoardController(WIFI_LED_pin, LOW);
+        delay(200);
+      }
+      break; 
 
-  if (mode == "station"){
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED){
-      LedController(WIFI_LED_pin, LOW);
-      delay(500);
-      LedController(WIFI_LED_pin, HIGH);
-      delay(500);
-    }
+    case 'A':
+
+      IPAddress apIP(192, 168, 1, 1);
+      WiFi.mode(WIFI_AP);
+      WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
+      WiFi.softAP(ssid, password);
+      LedOnBoardController(WIFI_LED_pin, HIGH);
+      break;  
+  }
+}
+
+void ReconnectWifi(){
+  if (WiFi.status() != WL_CONNECTED){
     
-  }
-  else if (mode == "access_point"){
-    IPAddress apIP(192, 168, 1, 1);
-    WiFi.mode(WIFI_AP);
-    WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
-    WiFi.softAP(ssid, password);
-    LedController(WIFI_LED_pin, LOW);
-  }
-  else if(mode == "access_point_station"){
+    MotorController(MOTOR_PIN, HIGH);
+    RelayController(RELAY_PIN, LOW);
+    
+    String settings;
+    DynamicJsonDocument doc(1024);
+    deserializeJson(doc, settings);
+    String ssid = doc["wifi"]["wifi_ssid"].as<String>();
+    String password = doc["wifi"]["wifi_password"].as<String>();
+    InitWifi('S', ssid, password);
 
-
   }
-  else{
-    // error
-  }
-
 }

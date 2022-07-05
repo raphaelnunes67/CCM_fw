@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 
-void InitWifi(String mode, String ssid, String password);
+void InitWifi(char mode, String ssid, String password);
+void ReconnectWifi(void);
 
 #endif
