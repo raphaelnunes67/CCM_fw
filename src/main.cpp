@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Definitions.h>
 #include <Pinout.h>
 #include <FileSystem.h>
 #include <ArduinoJson.h>
@@ -16,10 +17,9 @@ void setup(){
 
   if (settings == "ERROR"){
 
-    const String ap_ssid = "device_" + String(ESP.getChipId(), HEX); /**< Build AP SSID name */
-    const String ap_password = "device_" + String(ESP.getChipId(), HEX); /**< Build PASSWORD SSID name */
-
-    InitWifi('A', ap_ssid, ap_password);
+    const String ap_ssid = "device_" + String(ESP.getChipId(), HEX);
+    const String ap_password = "device_" + String(ESP.getChipId(), HEX);
+    InitWifi(ACCESS_POINT, ap_ssid, ap_password);
     
   }
   else{
@@ -30,7 +30,7 @@ void setup(){
     String ssid = doc["wifi"]["wifi_ssid"].as<String>();
     String password = doc["wifi"]["wifi_password"].as<String>();
   
-    InitWifi('S', ssid, password);
+    InitWifi(STATION, ssid, password);
 
     //InitMqtt(doc["mqtt"]);
 

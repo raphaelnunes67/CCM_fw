@@ -1,0 +1,4 @@
+enum {
+  ACCESS_POINT,
+  STATION
+};

@@ -1,15 +1,16 @@
-#include <Arduino.h>
-#include <Pinout.h>
-#include <ESP8266WiFi.h>
-#include <ArduinoJson.h>
-#include <DriverWifi.h>
+#include<Arduino.h>
+#include<Pinout.h>
+#include<Definitions.h>
+#include<ESP8266WiFi.h>
+#include<ArduinoJson.h>
+#include<DriverWifi.h>
 
-void InitWifi(char mode, String ssid, String password) {
+void InitWifi(int mode, String ssid, String password) {
   
   WiFi.mode(WIFI_OFF);
   delay(10);
   switch (mode){
-    case 'S':
+    case 0:
       WiFi.mode(WIFI_STA);
       WiFi.begin(ssid, password);
       while (WiFi.status() != WL_CONNECTED){
@@ -20,7 +21,7 @@ void InitWifi(char mode, String ssid, String password) {
       }
       break; 
 
-    case 'A':
+    case 1:
 
       IPAddress apIP(192, 168, 1, 1);
       WiFi.mode(WIFI_AP);
@@ -42,7 +43,7 @@ void ReconnectWifi(){
     deserializeJson(doc, settings);
     String ssid = doc["wifi"]["wifi_ssid"].as<String>();
     String password = doc["wifi"]["wifi_password"].as<String>();
-    InitWifi('S', ssid, password);
+    InitWifi(STATION, ssid, password);
 
   }
 }
