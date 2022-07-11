@@ -14,9 +14,9 @@ void InitWifi(int mode, String ssid, String password) {
       WiFi.mode(WIFI_STA);
       WiFi.begin(ssid, password);
       while (WiFi.status() != WL_CONNECTED){
-        LedOnBoardController(WIFI_LED_pin, HIGH);
+        LedController(WIFI_LED_MCP_PIN, ON);
         delay(200);
-        LedOnBoardController(WIFI_LED_pin, LOW);
+        LedController(WIFI_LED_MCP_PIN, OFF);
         delay(200);
       }
       break; 
@@ -27,7 +27,7 @@ void InitWifi(int mode, String ssid, String password) {
       WiFi.mode(WIFI_AP);
       WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
       WiFi.softAP(ssid, password);
-      LedOnBoardController(WIFI_LED_pin, HIGH);
+      LedController(WIFI_LED_MCP_PIN, ON);
       break;  
   }
 }
@@ -35,8 +35,9 @@ void InitWifi(int mode, String ssid, String password) {
 void ReconnectWifi(){
   if (WiFi.status() != WL_CONNECTED){
     
-    MotorController(MOTOR_PIN, HIGH);
-    RelayController(RELAY_PIN, LOW);
+    CommandMotor(OFF);
+    CommandRelay(RELAY_1_MCP_PIN, OPEN);
+    CommandRelay(RELAY_2_MCP_PIN, OPEN);
     
     String settings;
     DynamicJsonDocument doc(1024);

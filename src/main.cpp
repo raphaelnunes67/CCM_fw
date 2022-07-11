@@ -10,7 +10,7 @@ void setup(){
 
   String settings;
   FileSystem file_system;
-  Serial.begin(115200);
+  //Serial.begin(115200);
   PinoutBegin();
 
   settings = file_system.LoadSettings();
