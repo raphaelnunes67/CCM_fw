@@ -3,6 +3,7 @@
 #include <Pinout.h>
 #include <FileSystem.h>
 #include <ArduinoJson.h>
+#include <RegisterDevice.h>
 #include <DriverWifi.h>
 #include <DriverMqtt.h>
 
@@ -20,6 +21,7 @@ void setup(){
     const String ap_ssid = "device_" + String(ESP.getChipId(), HEX);
     const String ap_password = "device_" + String(ESP.getChipId(), HEX);
     InitWifi(ACCESS_POINT, ap_ssid, ap_password);
+    RegisterDevice();
     
   }
   else{

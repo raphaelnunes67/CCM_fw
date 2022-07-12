@@ -26,3 +26,11 @@ bool FileSystem::SaveSettings(String settings){
   return true;
 
 }
+
+String FileSystem::ReadHtml(void){
+  file = LittleFS.open("index.html", "r");
+  String html_page = file.readString();
+  file.close();
+
+  return html_page;
+}

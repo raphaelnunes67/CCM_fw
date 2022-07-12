@@ -9,6 +9,7 @@ class FileSystem {
     FileSystem();
     String LoadSettings(void);
     bool SaveSettings(String settings);
+    String ReadHtml(void);
 
 };
 
