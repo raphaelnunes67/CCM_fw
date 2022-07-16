@@ -2,6 +2,8 @@
 #include<SoftwareSerial.h>
 #include<DriverUtrassonic.h>
 
+#define DEBUG
+
 int GetDistance(int8_t RX_pin, int8_t TX_pin){
   SoftwareSerial UltrassonicSerial(RX_pin, TX_pin);
   UltrassonicSerial.begin(ULTRASSONIC_BAUD_RATE);
@@ -29,6 +31,10 @@ int GetDistance(int8_t RX_pin, int8_t TX_pin){
       }   
       else{
         UltrassonicSerial.end();
+        #ifdef DEBUG
+          Serial.print("distance: ");
+          Serial.println(distance);
+        #endif
         return distance;
       }
     }

@@ -2,6 +2,8 @@
 #include <Adafruit_MCP23X17.h>
 #include <Pinout.h>
 
+#define DEBUG
+
 Adafruit_MCP23X17 mcp;
 
 void PinoutBegin(){

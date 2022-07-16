@@ -2,6 +2,8 @@
 #include <LittleFS.h>
 #include <FileSystem.h>
 
+#define DEBUG
+
 File file;
 
 FileSystem::FileSystem(){
@@ -28,7 +30,7 @@ bool FileSystem::SaveSettings(String settings){
 }
 
 String FileSystem::ReadHtml(void){
-  file = LittleFS.open("index.html", "r");
+  file = LittleFS.open("/index.html", "r");
   String html_page = file.readString();
   file.close();
 

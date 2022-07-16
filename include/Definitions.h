@@ -2,8 +2,8 @@
 #define DEFINITIONS
 
 enum {
-  ACCESS_POINT,
-  STATION
+  STATION,
+  ACCESS_POINT
 };
 
 const int SERIAL_BAUD_RATE = 115200;

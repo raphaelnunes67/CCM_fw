@@ -5,6 +5,8 @@
 #include<FileSystem.h>
 #include<Pinout.h>
 
+#define DEBUG
+
 ESP8266WebServer server(SERVER_PORT);
 
 void HandleRegister(){
@@ -26,6 +28,9 @@ void RegisterDevice() {
   server.on("/register", HandleRegister);
   server.onNotFound(HandleNotFound);
   server.begin();
+  #ifdef DEBUG
+    Serial.println("Server initialized!");
+  #endif
 
   while(true){
     server.handleClient();

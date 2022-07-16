@@ -5,6 +5,8 @@
 #include<ArduinoJson.h>
 #include<DriverWifi.h>
 
+#define DEBUG
+
 void InitWifi(int mode, String ssid, String password) {
   
   WiFi.mode(WIFI_OFF);
@@ -22,12 +24,16 @@ void InitWifi(int mode, String ssid, String password) {
       break; 
 
     case 1:
-
       IPAddress apIP(192, 168, 1, 1);
       WiFi.mode(WIFI_AP);
       WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
       WiFi.softAP(ssid, password);
       LedController(WIFI_LED_MCP_PIN, ON);
+      #ifdef DEBUG
+        Serial.println("Access Point iniciado!");
+        Serial.print("IP address: ");
+        Serial.println(WiFi.softAPIP());
+      #endif
       break;  
   }
 }

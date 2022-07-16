@@ -7,17 +7,23 @@
 #include <DriverWifi.h>
 #include <DriverMqtt.h>
 
+#define DEBUG
+
 void setup(){
 
   String settings;
   FileSystem file_system;
-  //Serial.begin(115200);
+  #ifdef DEBUG
+    Serial.begin(115200);
+    Serial.println();
+  #endif
+  delay(2000);
   PinoutBegin();
 
   settings = file_system.LoadSettings();
 
   if (settings == "ERROR"){
-
+    Serial.println("Error");
     const String ap_ssid = "device_" + String(ESP.getChipId(), HEX);
     const String ap_password = "device_" + String(ESP.getChipId(), HEX);
     InitWifi(ACCESS_POINT, ap_ssid, ap_password);
