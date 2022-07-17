@@ -1,25 +1,25 @@
-#include <Arduino.h>
-#include <Definitions.h>
-#include <Pinout.h>
-#include <FileSystem.h>
-#include <ArduinoJson.h>
-#include <RegisterDevice.h>
-#include <DriverWifi.h>
-#include <DriverMqtt.h>
+#include<Arduino.h>
+#include<Definitions.h>
+#include<Pinout.h>
+#include<FileSystem.h>
+#include<ArduinoJson.h>
+#include<RegisterDevice.h>
+#include<DriverWifi.h>
+#include<DriverMqtt.h>
 
 #define DEBUG
 
 void setup(){
 
-  String settings;
-  FileSystem file_system;
   #ifdef DEBUG
     Serial.begin(115200);
     Serial.println();
   #endif
+
   delay(2000);
   PinoutBegin();
-
+  String settings;
+  FileSystem file_system;
   settings = file_system.LoadSettings();
 
   if (settings == "ERROR"){

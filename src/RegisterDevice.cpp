@@ -9,6 +9,7 @@
 
 ESP8266WebServer server(SERVER_PORT);
 
+
 void HandleRegister(){
   FileSystem file_system;
   String html_page = file_system.ReadHtml();
@@ -18,6 +19,11 @@ void HandleRegister(){
 
 void HandleNotFound(){
 
+  #ifdef DEBUG
+    Serial.println("redirection...");
+  #endif
+  server.sendHeader("Location", "/",true); 
+  server.send(302, "text/plane","");
 }
 
 void RegisterDevice() {
@@ -25,7 +31,7 @@ void RegisterDevice() {
   LedController(WIFI_LED_MCP_PIN, OFF);
   LedController(MQTT_LED_MCP_PIN, OFF);
 
-  server.on("/register", HandleRegister);
+  server.on("/", HandleRegister);
   server.onNotFound(HandleNotFound);
   server.begin();
   #ifdef DEBUG

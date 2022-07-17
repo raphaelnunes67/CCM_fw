@@ -108,7 +108,15 @@ body{
 	color: #fff;
 	margin-top: -3px;
 }
+
+.button-section-centralized{
+	display: flex;
+  justify-content: center;
+	width: 100%;
+}
+
 button {
+
 	background: #0053A6;
 	padding: 8px 20px 8px 20px;
 	border-radius: 5px;
@@ -147,35 +155,34 @@ button:hover{
 <div class="form-style-10">
 <h1>Device<span>Follow the steps below to register device</span></h1>
 <form name="formm" id="formm" action="" method="POST">
-    <div class="section"><span>1</span>Warehouse</div>
+	<div class="section"><span>1</span>Wi-Fi Connection</div>
     <div class="inner-wrap">
-        <label>The unique id for the beam <input type="text" name="localId"  id="localId" required="required" placeholder="e.g. D-04B" /></label>
-				<label>Maximum height [mm] <input type="number" name="maxDistance" id="maxDistance" required="required" placeholder="e.g. 1800"/></label>
-    </div>
-		
-    <div class="section"><span>2</span>Wi-Fi Connection</div>
-    <div class="inner-wrap">
-        <label>SSID<input list="networks" name="ssid" id="ssid" required="required" placeholder="e.g. FOXMAO EXPATRIATE" /></label>
+        <label>SSID<input list="networks" name="ssid" id="0" required="required" placeholder="" /></label>
 				<datalist id="networks">
 				</datalist>
-        <label>Password<input type="password" name="password" id="password"/></label>
+        <label>Password<input type="password" name="password" id="1"/></label>
 				<input type="checkbox" onclick="ShowPassword()"> 
 				<label id="check">
 					Show Password 
 				</label>		
 		</div>
+    <div class="section"><span>2</span>MQTT Connection</div>
+    <div class="inner-wrap">
+        <label>Broker IP<input type="text" name="br_ip"  id="2" required="required" placeholder="e.g. 192.168.0.21" /></label>
+				<label>Broker port<input type="number" name="br_port"  id="3" required="required" placeholder="8000" /></label>
+				<label>Broker user<input type="text" name="br_user"  id="4" required="required" placeholder="" /></label>
+				<label>Broker password<input type="password" name="br_password"  id="5" required="required" placeholder="" /></label>
+			</div>
 		
-    <div class="section"><span>3</span>Server</div>
+    <div class="section"><span>3</span>Topics</div>
         <div class="inner-wrap">
-        <label>Server Address <input type="text" name="serverAddress" id="serverAddress" required="required" placeholder="e.g. http://192.168.0.10" /></label>
-        <label>Port <input type="number" name="port" id="port" required="required" placeholder="e.g. 5000" /></label>
-				<label>Route Path<input type="text" name="routePath" id="routePath" required="required" placeholder="e.g. /api/sensors/measurement" /></label>
+        <label>Topic to publish<input type="text" name="publish" id="6" required="required" placeholder="" /></label>
+        <label>Topic to subscribe<input type="text" name="subscribe" id="7" required="required" placeholder="" /></label>
 			</div>
     <div class="button-section">
-			<button type="button" onclick="check_values()">Register</button>
-     <span class="privacy-policy">
-     <!-- <input type="checkbox" name="field7">You agree to our Terms and Policy.  -->
-     </span>
+			<div class ="button-section-centralized">
+				<button type="button" onclick="check_values()">SAVE</button>
+			</div>
     </div>
 </form>
 </div>
@@ -193,51 +200,30 @@ button:hover{
 		
 		function check_values(){
 
-			var localId = document.getElementById("localId");
-			var maxDistance = document.getElementById("maxDistance");
-			var ssid = document.getElementById("ssid");
-			var password = document.getElementById("password");
-			var serverAddress = document.getElementById("serverAddress");
-			var port = document.getElementById("port");
-			var routePath = document.getElementById("routePath")
-			if (localId.value == "") {
-				alert("Local ID not informed");
-				localId.focus();
-				return;
-      }
+			var ssid = document.getElementById("0");
+			var password = document.getElementById("1");
+			var br_ip = document.getElementById("2");
+			var br_port = document.getElementById("3");
+			var br_user = document.getElementById("4");
+			var br_password = document.getElementById("5");
+			var publish = document.getElementById("6");
+			var subscribe = document.getElementById("7");
+			
+			var data = [8];
 
-			if (maxDistance.value == "") {
-				alert("Maximum distance not informed");
-				maxDistance.focus();
-				return;
-      }
+			for (var i=0; i<8; i++){
+				data[i] = document.getElementById(i.toString());
+				if (data[i].value == ""){
+					alert("Some field was not informed");
+					data[i].focus();
+					return;
+				}
+	
+			}
 
-			if (ssid.value == "") {
-				alert("Network name not informed");
-				ssid.focus();
-				return;
-      }
-
-			if (serverAddress.value == "") {
-				alert("Server address not informed");
-				serverAddress.focus();
-				return;
-      }
-
-			if (port.value == "") {
-				alert("Port number not informed");
-				port.focus();
-				return;
-      }
-
-			if (routePath.value == "") {
-				alert("Route path number not informed");
-				routePath.focus();
-				return;
-      }
-
-			if(password.value != "" && password.value.length < 8){
-				alert("Password is too short");
+			if(data[1].value.length < 8){
+				alert("WIFI password is too short");
+				data[1].focus();
 				return;
 			}	
 				
