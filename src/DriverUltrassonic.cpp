@@ -32,7 +32,7 @@ int GetDistance(int8_t RX_pin, int8_t TX_pin){
       else{
         UltrassonicSerial.end();
         #ifdef DEBUG
-          Serial.print("distance: ");
+          Serial.print(F("distance: "));
           Serial.println(distance);
         #endif
         return distance;

@@ -1,17 +1,16 @@
 {
   "wifi":{
-    "wifi_ssid": "SSID",
-    "wifi_password": "PASSWORD"
+    "wifi_ssid": "NunesWIFIpro",
+    "wifi_password": "mawa2526"
   },
+
   "mqtt":{
-    "broker_user": "BROKER_USER",
-    "broker_password": "BROKER_PASSWORD",
-    "broker_ip": "BROKER_IP",
-    "broker_port": "BROKER_PORT",
-    "broker_topic_publish": "BROKER_TOPIC_PUBLISH",
-    "broker_topic_subscribe": "BROKER_TOPIC_SUBSCRIBE",
-    "client_name":"CCM-master"
-  },
-  "firmware_version": "FIRMWARE_VERSION",
-  "fota_link": "FOTA_LINK"
+    "password": "mawa2526",
+    "br_ip": "http://192.168.0.21",
+    "br_port": "1883",
+    "br_user": "mqtt-home",
+    "br_password": "mqtt_1895",
+    "publish": "/home/cistern/from",
+    "subscribe": "/home/cistern/to"
+  }
 }

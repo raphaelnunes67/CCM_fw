@@ -12,7 +12,7 @@
 void setup(){
 
   #ifdef DEBUG
-    Serial.begin(115200);
+    Serial.begin(SERIAL_BAUD_RATE);
     Serial.println();
   #endif
 
@@ -20,10 +20,14 @@ void setup(){
   PinoutBegin();
   String settings;
   FileSystem file_system;
+
+  file_system.checkSystemVersion();
   settings = file_system.LoadSettings();
 
   if (settings == "ERROR"){
-    Serial.println("Error");
+    #ifdef DEBUG
+      Serial.println(F("settings file do not exists..."));
+    #endif
     const String ap_ssid = "device_" + String(ESP.getChipId(), HEX);
     const String ap_password = "device_" + String(ESP.getChipId(), HEX);
     InitWifi(ACCESS_POINT, ap_ssid, ap_password);
@@ -32,13 +36,12 @@ void setup(){
   }
   else{
 
-    DynamicJsonDocument doc(1024);
+    StaticJsonDocument<512> doc;
     deserializeJson(doc, settings);
-
-    String ssid = doc["wifi"]["wifi_ssid"].as<String>();
-    String password = doc["wifi"]["wifi_password"].as<String>();
+    String wifi_ssid = doc["wifi"]["wifi_ssid"].as<String>();
+    String wifi_password = doc["wifi"]["wifi_password"].as<String>();
   
-    InitWifi(STATION, ssid, password);
+    InitWifi(STATION, wifi_ssid, wifi_password);
 
     //InitMqtt(doc["mqtt"]);
 

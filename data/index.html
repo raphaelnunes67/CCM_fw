@@ -169,7 +169,7 @@ button:hover{
     <div class="section"><span>2</span>MQTT Connection</div>
     <div class="inner-wrap">
         <label>Broker IP<input type="text" name="br_ip"  id="2" required="required" placeholder="e.g. 192.168.0.21" /></label>
-				<label>Broker port<input type="number" name="br_port"  id="3" required="required" placeholder="8000" /></label>
+				<label>Broker port<input type="number" name="br_port"  id="3" required="required" placeholder="1883" /></label>
 				<label>Broker user<input type="text" name="br_user"  id="4" required="required" placeholder="" /></label>
 				<label>Broker password<input type="password" name="br_password"  id="5" required="required" placeholder="" /></label>
 			</div>
@@ -178,7 +178,12 @@ button:hover{
         <div class="inner-wrap">
         <label>Topic to publish<input type="text" name="publish" id="6" required="required" placeholder="" /></label>
         <label>Topic to subscribe<input type="text" name="subscribe" id="7" required="required" placeholder="" /></label>
+				<label>Client name<input type="text" name="client_name" id="8" required="required" placeholder="" /></label>
 			</div>
+			<div class="section"><span>3</span>Sytem settings</div>
+			<div class="inner-wrap">
+			<label>FOTA link<input type="text" name="fota_link" id="9" required="required" placeholder="" /></label>
+		</div>
     <div class="button-section">
 			<div class ="button-section-centralized">
 				<button type="button" onclick="check_values()">SAVE</button>
@@ -200,28 +205,18 @@ button:hover{
 		
 		function check_values(){
 
-			var ssid = document.getElementById("0");
-			var password = document.getElementById("1");
-			var br_ip = document.getElementById("2");
-			var br_port = document.getElementById("3");
-			var br_user = document.getElementById("4");
-			var br_password = document.getElementById("5");
-			var publish = document.getElementById("6");
-			var subscribe = document.getElementById("7");
-			
-			var data = [8];
+			var data = [10];
 
-			for (var i=0; i<8; i++){
+			for (var i=0; i<10; i++){
 				data[i] = document.getElementById(i.toString());
 				if (data[i].value == ""){
 					alert("Some field was not informed");
 					data[i].focus();
 					return;
 				}
-	
 			}
 
-			if(data[1].value.length < 8){
+			if(data[1].value.length < 8 || data[5].value.length < 8){
 				alert("WIFI password is too short");
 				data[1].focus();
 				return;

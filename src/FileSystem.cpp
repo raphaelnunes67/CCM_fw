@@ -20,6 +20,15 @@ FileSystem::FileSystem(){
   #endif
 }
 
+void FileSystem::checkSystemVersion(void){
+  file = LittleFS.open("/system.json", "r");
+  if (!file){
+    file = LittleFS.open("/system.json", "w");
+    file.print("{\"firmware_version\":\"1.0\"}");
+    file.close();
+  }
+}
+
 String FileSystem::LoadSettings(void){
 
   file = LittleFS.open("/settings.json", "r");
@@ -35,9 +44,10 @@ String FileSystem::LoadSettings(void){
   return "ERROR";
 }
 
-bool FileSystem::SaveSettings(String settings){
-  return true;
-
+void FileSystem::SaveSettings(String settings){
+  file = LittleFS.open("/settings.json", "w");
+  file.print(settings);
+  file.close();
 }
 
 String FileSystem::ReadHtml(void){

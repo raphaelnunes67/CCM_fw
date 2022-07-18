@@ -7,8 +7,9 @@ class FileSystem {
 
   public:
     FileSystem();
+    void checkSystemVersion(void);
     String LoadSettings(void);
-    bool SaveSettings(String settings);
+    void SaveSettings(String settings);
     String ReadHtml(void);
 
 };
