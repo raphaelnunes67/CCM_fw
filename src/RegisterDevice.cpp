@@ -13,7 +13,7 @@ ESP8266WebServer server(SERVER_PORT);
 void HandleRegister(){
 
   FileSystem file_system;
-  String html_page = file_system.ReadHtml();
+  String html_page = file_system.readHtml();
   if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("br_ip")
       && server.hasArg("br_port") && server.hasArg("br_user") && server.hasArg("br_password")
       && server.hasArg("publish") && server.hasArg("subscribe") && server.hasArg("client_name") 
@@ -36,7 +36,9 @@ void HandleRegister(){
     doc["fota_link"] = server.arg("fota_link");
 
     serializeJson(doc, settings);
-    file_system.SaveSettings(settings);
+    file_system.saveSettings(settings);
+    delay(2000);
+    ESP.restart();
     
   }
   server.send(200, "text/html", html_page);

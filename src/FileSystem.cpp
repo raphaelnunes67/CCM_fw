@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include "LittleFS.h"
 #include <FileSystem.h>
 
 #define DEBUG
+
 File file;
 
 FileSystem::FileSystem(){
@@ -29,7 +29,7 @@ void FileSystem::checkSystemVersion(void){
   }
 }
 
-String FileSystem::LoadSettings(void){
+String FileSystem::loadSettings(void){
 
   file = LittleFS.open("/settings.json", "r");
 
@@ -44,16 +44,21 @@ String FileSystem::LoadSettings(void){
   return "ERROR";
 }
 
-void FileSystem::SaveSettings(String settings){
+void FileSystem::saveSettings(String settings){
   file = LittleFS.open("/settings.json", "w");
   file.print(settings);
   file.close();
 }
 
-String FileSystem::ReadHtml(void){
+void FileSystem::removeSettings(){
+  LittleFS.remove("/settings.json");
+}
+
+String FileSystem::readHtml(void){
 
   file = LittleFS.open("/index.html", "r");
   String html_page = file.readString();
   file.close();
   return html_page;
 }
+

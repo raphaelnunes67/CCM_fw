@@ -1,12 +1,9 @@
 #ifndef DEFINITIONS
 #define DEFINITIONS
 
-enum {
-  STATION,
-  ACCESS_POINT
-};
 
-const int SERIAL_BAUD_RATE = 115200;
+const int SERIAL_BAUD_RATE = 74880;
+const int STANDARD_MODE =  100000;
 
 #define ON true
 #define OFF false

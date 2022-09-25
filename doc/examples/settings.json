@@ -1,11 +1,11 @@
 {
   "wifi":{
-    "wifi_ssid": "NunesWIFIpro",
-    "wifi_password": "mawa2526"
+    "wifi_ssid": "",
+    "wifi_password": ""
   },
 
   "mqtt":{
-    "password": "mawa2526",
+
     "br_ip": "http://192.168.0.21",
     "br_port": "1883",
     "br_user": "mqtt-home",

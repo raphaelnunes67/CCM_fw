@@ -3,7 +3,12 @@
 
 #include <Arduino.h>
 
-void InitWifi(int mode, String ssid, String password);
-void ReconnectWifi(void);
+enum {
+  STATION,
+  ACCESS_POINT
+};
+
+bool initWifi(int mode, String ssid, String password);
+void reconnectWifi(void);
 
 #endif

@@ -19,7 +19,7 @@ const int RELAY_2_MCP_PIN = 5;
 
 const int DUTY_CYCLE_VALUE = 132;
 
-void PinoutBegin(void);
+void pinoutBegin(void);
 void LedController(int led_pin, bool state);
 void CommandRelay(int pin, bool state);
 void CommandMotor(bool state);

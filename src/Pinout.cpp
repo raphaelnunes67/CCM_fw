@@ -6,7 +6,7 @@
 
 Adafruit_MCP23X17 mcp;
 
-void PinoutBegin(){
+void pinoutBegin(){
 
   pinMode(RX_0_ULTRASSONIC_PIN, INPUT);
   pinMode(TX_0_ULTRASSONIC_PIN, OUTPUT);

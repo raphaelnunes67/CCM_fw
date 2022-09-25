@@ -2,15 +2,17 @@
 #define FILE_SYSTEM
 
 #include <Arduino.h>
+#include "LittleFS.h"
 
 class FileSystem {
 
   public:
     FileSystem();
     void checkSystemVersion(void);
-    String LoadSettings(void);
-    void SaveSettings(String settings);
-    String ReadHtml(void);
+    String loadSettings(void);
+    void saveSettings(String settings);
+    void removeSettings();
+    String readHtml(void);
 
 };
 

@@ -1,4 +1,5 @@
 #include<Arduino.h>
+#include<Wire.h>
 #include<Definitions.h>
 #include<Pinout.h>
 #include<FileSystem.h>
@@ -9,6 +10,11 @@
 
 #define DEBUG
 
+void i2cBegin(){
+    Wire.begin();
+    Wire.setClock(STANDARD_MODE);
+}
+
 void setup(){
 
   #ifdef DEBUG
@@ -17,12 +23,14 @@ void setup(){
   #endif
 
   delay(2000);
-  PinoutBegin();
+  
+  i2cBegin();
+  pinoutBegin();
   String settings;
   FileSystem file_system;
 
   file_system.checkSystemVersion();
-  settings = file_system.LoadSettings();
+  settings = file_system.loadSettings();
 
   if (settings == "ERROR"){
     #ifdef DEBUG
@@ -30,7 +38,7 @@ void setup(){
     #endif
     const String ap_ssid = "device_" + String(ESP.getChipId(), HEX);
     const String ap_password = "device_" + String(ESP.getChipId(), HEX);
-    InitWifi(ACCESS_POINT, ap_ssid, ap_password);
+    initWifi(ACCESS_POINT, ap_ssid, ap_password);
     RegisterDevice();
     
   }
@@ -40,16 +48,23 @@ void setup(){
     deserializeJson(doc, settings);
     String wifi_ssid = doc["wifi"]["wifi_ssid"].as<String>();
     String wifi_password = doc["wifi"]["wifi_password"].as<String>();
-  
-    InitWifi(STATION, wifi_ssid, wifi_password);
 
-    //InitMqtt(doc["mqtt"]);
+    #ifdef DEBUG
+      Serial.println(F("settings file exists..."));
+    #endif
+  
+    if (!initWifi(STATION, wifi_ssid, wifi_password)){
+      file_system.removeSettings();
+      ESP.restart();
+    }
+
+    //initMqtt(doc["mqtt"]);
 
   }
 }
 
 void loop(){
   // mcp.digitalWrite(WIFI_LED_pin, HIGH);
-  ReconnectWifi();
+  reconnectWifi();
   //ReconnectMqtt();
 }
