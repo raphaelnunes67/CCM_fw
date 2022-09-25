@@ -2,7 +2,10 @@
 #define DRIVER_MQTT
 
 #include <Arduino.h>
+#include <PubSubClient.h>
+#include <WiFiClient.h>
 
-void InitMqtt(String mqtt_settings);
+
+bool connectMqtt(String mqtt_settings);
 
 #endif

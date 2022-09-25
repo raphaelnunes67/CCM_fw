@@ -6,11 +6,12 @@
 
   "mqtt":{
 
-    "br_ip": "http://192.168.0.21",
+    "br_address": "http://192.168.0.21",
     "br_port": "1883",
     "br_user": "mqtt-home",
     "br_password": "mqtt_1895",
     "publish": "/home/cistern/from",
     "subscribe": "/home/cistern/to"
-  }
+  },
+  "fota_link": ""
 }

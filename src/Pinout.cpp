@@ -23,19 +23,24 @@ void pinoutBegin(){
   mcp.pinMode(WIFI_LED_MCP_PIN, OUTPUT); mcp.digitalWrite(WIFI_LED_MCP_PIN, HIGH);
   mcp.pinMode(MQTT_LED_MCP_PIN, OUTPUT); mcp.digitalWrite(MQTT_LED_MCP_PIN, HIGH);
   mcp.pinMode(WEB_SERVER_LED_MCP_PIN, OUTPUT); mcp.digitalWrite(WEB_SERVER_LED_MCP_PIN, HIGH);
+  mcp.pinMode(SOLENOID_MCP_PIN, OUTPUT); mcp.digitalWrite(SOLENOID_MCP_PIN, LOW);
   mcp.pinMode(RELAY_1_MCP_PIN, OUTPUT); mcp.digitalWrite(RELAY_1_MCP_PIN, LOW);
   mcp.pinMode(RELAY_2_MCP_PIN, OUTPUT); mcp.digitalWrite(RELAY_2_MCP_PIN, LOW);
 }
 
-void LedController(int led_pin, bool state){
+void ledController(int led_pin, bool state){
   mcp.digitalWrite(led_pin, !state);
 }
 
-void CommandRelay(int pin, bool state){
+void commandRelay(int pin, bool state){
   mcp.digitalWrite(pin, state);
 }
 
-void CommandMotor(bool state){
+void commandSolenoid(int pin, bool state){
+  mcp.digitalWrite(pin, state);
+}
+
+void commandMotor(bool state){
   if (state){
     analogWrite(GEN_PIN, DUTY_CYCLE_VALUE);
     delayMicroseconds(50);

@@ -14,14 +14,22 @@ const int ANALOG_PIN = 17;
 const int WIFI_LED_MCP_PIN = 1;
 const int MQTT_LED_MCP_PIN = 2;
 const int WEB_SERVER_LED_MCP_PIN = 3;
-const int RELAY_1_MCP_PIN = 4;
+const int SOLENOID_MCP_PIN = 4;
+const int RELAY_1_MCP_PIN = 5;
 const int RELAY_2_MCP_PIN = 5;
 
 const int DUTY_CYCLE_VALUE = 132;
 
+#define ON true
+#define OFF false
+
+#define OPEN false
+#define CLOSE true
+
 void pinoutBegin(void);
-void LedController(int led_pin, bool state);
-void CommandRelay(int pin, bool state);
-void CommandMotor(bool state);
+void ledController(int led_pin, bool state);
+void commandRelay(int pin, bool state);
+void commandSolenoid(int pin, bool state);
+void commandMotor(bool state);
 
 #endif

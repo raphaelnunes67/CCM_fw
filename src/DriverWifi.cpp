@@ -20,9 +20,9 @@ bool initWifi(int mode, String ssid, String password) {
       WiFi.mode(WIFI_STA);
       WiFi.begin(ssid, password);
       while ((WiFi.status() != WL_CONNECTED) && (millis() - current_time < 10000)){
-        LedController(WIFI_LED_MCP_PIN, ON);
+        ledController(WIFI_LED_MCP_PIN, ON);
         delay(200);
-        LedController(WIFI_LED_MCP_PIN, OFF);
+        ledController(WIFI_LED_MCP_PIN, OFF);
         delay(200);
       }
       if (WiFi.status() != WL_CONNECTED){
@@ -36,7 +36,7 @@ bool initWifi(int mode, String ssid, String password) {
       WiFi.mode(WIFI_AP);
       WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
       WiFi.softAP(ssid, password);
-      LedController(WIFI_LED_MCP_PIN, ON);
+      ledController(WIFI_LED_MCP_PIN, ON);
       #ifdef DEBUG
         Serial.println("Access Point iniciado!");
         Serial.print("IP address: ");
@@ -51,9 +51,9 @@ bool initWifi(int mode, String ssid, String password) {
 void reconnectWifi(){
   if (WiFi.status() != WL_CONNECTED){
     
-    CommandMotor(OFF);
-    CommandRelay(RELAY_1_MCP_PIN, OPEN);
-    CommandRelay(RELAY_2_MCP_PIN, OPEN);
+    commandMotor(OFF);
+    commandRelay(RELAY_1_MCP_PIN, OPEN);
+    commandRelay(RELAY_2_MCP_PIN, OPEN);
     
     String settings;
     DynamicJsonDocument doc(1024);

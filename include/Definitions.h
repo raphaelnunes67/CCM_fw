@@ -3,12 +3,9 @@
 
 
 const int SERIAL_BAUD_RATE = 74880;
+const int SERIAL_SR04T_BAUD_RATE = 9600;
 const int STANDARD_MODE =  100000;
 
-#define ON true
-#define OFF false
-
-#define OPEN false
-#define CLOSE true
+bool ENABLE_POOLING = false;
 
 #endif

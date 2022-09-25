@@ -14,7 +14,7 @@ void HandleRegister(){
 
   FileSystem file_system;
   String html_page = file_system.readHtml();
-  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("br_ip")
+  if (server.hasArg("ssid") && server.hasArg("password") && server.hasArg("br_address")
       && server.hasArg("br_port") && server.hasArg("br_user") && server.hasArg("br_password")
       && server.hasArg("publish") && server.hasArg("subscribe") && server.hasArg("client_name") 
       && server.hasArg("fota_link")) { 
@@ -26,13 +26,12 @@ void HandleRegister(){
     wifi["wifi_password"] = server.arg("password");
 
     JsonObject mqtt = doc.createNestedObject("mqtt");
-    mqtt["br_ip"] = server.arg("br_ip");
+    mqtt["br_address"] = server.arg("br_address");
     mqtt["br_port"] = server.arg("br_port");
     mqtt["br_user"] = server.arg("br_user");
     mqtt["br_password"] = server.arg("br_password");
     mqtt["publish"] = server.arg("subscribe");
     mqtt["subscribe"] = server.arg("pusblish");
-    mqtt["client_name"] = server.arg("client_name");
     doc["fota_link"] = server.arg("fota_link");
 
     serializeJson(doc, settings);
@@ -55,8 +54,8 @@ void HandleNotFound(){
 
 void RegisterDevice() {
   
-  LedController(WIFI_LED_MCP_PIN, OFF);
-  LedController(MQTT_LED_MCP_PIN, OFF);
+  ledController(WIFI_LED_MCP_PIN, OFF);
+  ledController(MQTT_LED_MCP_PIN, OFF);
 
   server.on("/", HandleRegister);
   server.onNotFound(HandleNotFound);

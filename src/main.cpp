@@ -58,8 +58,10 @@ void setup(){
       ESP.restart();
     }
 
-    //initMqtt(doc["mqtt"]);
-
+    if (!connectMqtt(doc["mqtt"])){
+      file_system.removeSettings();
+      ESP.restart();
+    } 
   }
 }
 
@@ -67,4 +69,7 @@ void loop(){
   // mcp.digitalWrite(WIFI_LED_pin, HIGH);
   reconnectWifi();
   //ReconnectMqtt();
+  if (ENABLE_POOLING){
+    
+  }
 }
